@@ -18,5 +18,10 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v4
         with:
-          node-version: ''
+          node-version: 20
+
+      - name: "Build application"
+        run: |
+          npm install
+          # This has a postinstall job that runs the build for the frontend and server
         
