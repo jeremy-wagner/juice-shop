@@ -1,0 +1,35 @@
+name: Security Scans
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ] 
+    
+jobs: 
+
+  build-and-scan:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Build application
+        run: npm run build
+        
+      # SAST Scan using Semgrep
+      - name: Semgrep SAST Scan
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: p/javascript
+          output: semgrep-results.json
