@@ -30,4 +30,6 @@ jobs:
 
       - name: "Semgrep SAST Scan"
         run: semgrep ci
+          --config "p/nodejs"
+          --output semgrep-results.json
       
