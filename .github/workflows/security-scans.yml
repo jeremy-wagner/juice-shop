@@ -29,7 +29,5 @@ jobs:
         run: python3 -m pip install semgrep
 
       - name: "Semgrep SAST Scan"
-        run: semgrep ci
-          --config "p/nodejs"
-          --output semgrep-results.json
+        run: semgrep ci --config "p/nodejs" --output semgrep-results.json
       
