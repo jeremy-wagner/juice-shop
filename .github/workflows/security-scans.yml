@@ -24,4 +24,7 @@ jobs:
         run: |
           npm install
           # This has a postinstall job that runs the build for the frontend and server
-        
+
+      - name: "Semgrep SAST Scan"
+        uses: semgrep/semgrep-action@v1
+      
