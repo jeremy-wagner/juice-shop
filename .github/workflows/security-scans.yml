@@ -10,6 +10,8 @@ jobs:
 
   build-and-scan:
     runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
     
     steps:
       - name: Clone repository
@@ -26,5 +28,5 @@ jobs:
           # This has a postinstall job that runs the build for the frontend and server
 
       - name: "Semgrep SAST Scan"
-        uses: semgrep/semgrep-action@v1
+        run: semgrep ci
       
