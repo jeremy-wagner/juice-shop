@@ -29,7 +29,7 @@ jobs:
         run: python3 -m pip install semgrep
 
       - name: Semgrep SAST Scan
-        run: semgrep ci --config "p/nodejs" -sarif --output semgrep-results.sarif --timeout 0
+        run: semgrep ci --config "p/nodejs" --sarif --output semgrep-results.sarif --timeout 0
         continue-on-error: true
 
       - name: Upload SAST Results
