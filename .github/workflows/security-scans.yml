@@ -10,8 +10,6 @@ jobs:
 
   build-and-scan:
     runs-on: ubuntu-latest
-    container:
-      image: semgrep/semgrep
     
     steps:
       - name: Clone repository
@@ -26,6 +24,9 @@ jobs:
         run: |
           npm install
           # This has a postinstall job that runs the build for the frontend and server
+
+      - name: "Install Semgrep"
+        run: python3 -m pip install semgrep
 
       - name: "Semgrep SAST Scan"
         run: semgrep ci
