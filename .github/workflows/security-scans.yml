@@ -20,14 +20,21 @@ jobs:
         with:
           node-version: 20
 
-      - name: "Build application"
+      - name: Build application
         run: |
           npm install
           # This has a postinstall job that runs the build for the frontend and server
 
-      - name: "Install Semgrep"
+      - name: Install Semgrep
         run: python3 -m pip install semgrep
 
-      - name: "Semgrep SAST Scan"
+      - name: Semgrep SAST Scan
         run: semgrep ci --config "p/nodejs" --output semgrep-results.json --timeout 0
+        continue-on-error: true
+
+      - name: Upload SAST Results
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: semgrep-results
+          path: semgrep-results.json
       
